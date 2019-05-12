@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +17,18 @@ import com.spring.helper.RestHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
  * @author hoan.lam
  *
  */
+
 @RestController
 @RequestMapping(value = "api/v1/users")
 @Api(tags = {"user"})
+@Slf4j
 public class UserController extends AbstractRestHandler {
 
   @RequestMapping(value = "/{username}", method = RequestMethod.GET,
@@ -44,9 +48,12 @@ public class UserController extends AbstractRestHandler {
   @RequestMapping(value = "", method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
-  public void create(@RequestBody User user, HttpServletRequest request,
+  public boolean create(@RequestBody User user, HttpServletRequest request,
       HttpServletResponse response) {
+    log.info("Create user api is starting...");
     checkResourceFound(user, false);
-    RestHelper.create(user);
+    ResponseEntity<?> restResponse =
+        RestHelper.post(RestHelper.getEndpoint("/users"), user, User.class);
+    return (restResponse.hasBody());
   }
 }

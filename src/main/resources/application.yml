@@ -1,7 +1,2 @@
-spring:
-   profiles: dev
-   application:
-      name: rest-services-dev
-      endpoint: http://5c18cb40cfe31000133b175a.mockapi.io/api/users
 server:
-   port: 9090
+   port: 9000

@@ -1,25 +1,36 @@
 package com.spring.entities;
 
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class User implements Serializable {
+public class User {
 
-  private static final long serialVersionUID = 431382374075800767L;
-
-  private int id;
-  private String createAt;
+  private String id;
+  private String createdAt;
   private String name;
-  private String avarta;
+  private String avatar;
 
-  public User(int id, String createAt, String name, String avarta) {
+  public User() {
+    this.id = "";
+    this.createdAt = "";
+    this.name = "";
+    this.avatar = "";
+  }
+
+  public User(String id, String createdAt, String name, String avatar) {
     this.id = id;
-    this.createAt = createAt;
+    this.createdAt = createdAt;
     this.name = name;
-    this.avarta = avarta;
+    this.avatar = avatar;
+  }
+
+  public User(String createdAt, String name, String avatar) {
+    super();
+    this.createdAt = createdAt;
+    this.name = name;
+    this.avatar = avatar;
   }
 
 }
