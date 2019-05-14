@@ -12,6 +12,7 @@ public class User {
   private String name;
   private String avatar;
 
+  
   public User() {
     this.id = "";
     this.createdAt = "";
