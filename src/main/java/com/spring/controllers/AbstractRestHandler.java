@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
+import com.spring.controllers.response.ResponseError;
 import com.spring.exceptions.BadRequestException;
 import com.spring.exceptions.DataFormatException;
 import com.spring.exceptions.ResourceNotFoundException;

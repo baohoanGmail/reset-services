@@ -1,5 +1,12 @@
-package com.spring.controllers;
+package com.spring.controllers.response;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class ResponseError {
 
   public final String detail;
