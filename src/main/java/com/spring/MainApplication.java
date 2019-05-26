@@ -11,13 +11,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.spring")
 @RestController
-public class MainApplication extends SpringBootServletInitializer {
+public class MainApplication extends SpringBootServletInitializer implements WebMvcConfigurer {
 
   private static final Logger logger = LoggerFactory.getLogger(MainApplication.class);
 
@@ -26,6 +28,12 @@ public class MainApplication extends SpringBootServletInitializer {
     logger.warn("this is a warn message");
     logger.error("this is a error message");
     SpringApplication.run(MainApplication.class, args);
+  }
+
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+    WebMvcConfigurer.super.addCorsMappings(registry);
   }
 
   /**
