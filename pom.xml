@@ -12,6 +12,8 @@
 	<groupId>com.spring</groupId>
 	<artifactId>rest-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- Update the packing JAR to WAR. Used to deploy package on Tomcat server -->
+	<packaging>war</packaging>
 	<name>spring-boot</name>
 	<description>Initialization a spring boot project</description>
 
