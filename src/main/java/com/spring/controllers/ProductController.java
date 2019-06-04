@@ -21,19 +21,18 @@ public class ProductController extends AbstractRestHandler {
   private static List<Product> products = null;
   static {
     products = new ArrayList<>();
-    for (int i = 0; i < 100; i++) {
-      products.add(new Product(String.valueOf(++i), "Name ".concat(String.valueOf(++i))));
+    for (int i = 0; i < 50; i++) {
+      products.add(new Product(String.valueOf(i), "Name ".concat(String.valueOf(i))));
     }
   }
 
   @GetMapping(path = "/{id}")
-  public ResponseEntity<RestResponse> getProducts(
-      @PathVariable(required = true, name = "id") String id) {
-    Optional<Product> oProduct = products.stream().filter(p -> p.getId() == id).findFirst();
-    if (!oProduct.isPresent()) {
-      return new ResponseEntity<RestResponse>(new RestResponse(), HttpStatus.NOT_FOUND);
+  public ResponseEntity<RestResponse> getProducts(@PathVariable(required = true, name = "id") String id) {
+    Optional<Product> oProduct = products.stream().filter(p -> id.equals(p.getId())).findAny();
+    if (oProduct.isPresent()) {
+      return new ResponseEntity<RestResponse>(new RestResponse(oProduct.get()), HttpStatus.OK);
     }
-    return new ResponseEntity<RestResponse>(new RestResponse(oProduct.get()), HttpStatus.OK);
+    return new ResponseEntity<RestResponse>(new RestResponse(), HttpStatus.NOT_FOUND);
   }
 
 }
