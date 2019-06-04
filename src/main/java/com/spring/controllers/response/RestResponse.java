@@ -10,30 +10,25 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CommonResponse implements Serializable {
+public class RestResponse implements Serializable {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -4984981421445439339L;
 
   /** The status. */
-  private int status;
-
-  /** The total. */
-  @JsonInclude(Include.NON_NULL)
-  private Integer total;
+  private String status;
 
   /** The data. */
+  @JsonInclude(content = Include.NON_NULL)
   private Object data;
 
-  /**
-   * Instantiates a new common response.
-   *
-   * @param status the status
-   * @param data the data
-   */
-  public CommonResponse(int status, Object data) {
-    this.status = status;
-    this.data = data;
+  public RestResponse() {
+    this.status = "success";
+    this.data = null;
   }
 
+  public RestResponse(Object data) {
+    this.status = "success";
+    this.data = data;
+  }
 }
